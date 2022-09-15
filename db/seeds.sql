@@ -1,6 +1,6 @@
-USE userManagement_db;
+USE classroomManagement_db;
 
-INSERT INTO user (id, first_name, last_name, email, phone, comments, status) 
+INSERT INTO student (id, first_name, last_name, email, phone, comments, status) 
 VALUES
 (NULL, "Amanda", "Nunes", "anunes@ufc.com", "012345 678910", "", "active"),
 (NULL, "Alexander", "Volkanovski", "avolkanovski@ufc.com", "012345 678910", "", "active"),

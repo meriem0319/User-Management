@@ -1,10 +1,10 @@
-DROP DATABASE IF EXISTS userManagement_db;
+DROP DATABASE IF EXISTS classroomManagement_db;
 
-CREATE DATABASE userManagement_db;
+CREATE DATABASE classroomManagement_db;
 
-USE userManagement_db;
+USE classroomManagement_db;
 
-CREATE TABLE user ( 
+CREATE TABLE student ( 
     id INT NOT NULL AUTO_INCREMENT, 
     first_name VARCHAR(45) NOT NULL,
     last_name VARCHAR(45) NOT NULL,

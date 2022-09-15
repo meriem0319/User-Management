@@ -1,0 +1,70 @@
+{{! creating this base form in a partials folder to be reused in other hbs files instead of typing 
+all of this data into each single file to render the same form }}
+
+<div class="col-6">
+  <div class="form-floating mb-3">
+    <input
+      type="text"
+      class="form-control"
+      id="floatingInput"
+      placeholder="Fist Name"
+      name="first_name"
+    />
+    <label for="floatingInput">Student's Fist Name</label>
+  </div>
+</div>
+<div class="col-6">
+  <div class="form-floating mb-3">
+    <input
+      type="text"
+      class="form-control"
+      id="floatingInput"
+      placeholder="Last Name"
+      name="last_name"
+    />
+    <label for="floatingInput">Student's Last Name</label>
+  </div>
+</div>
+
+<div class="col-6">
+  <div class="form-floating mb-3">
+    <input
+      type="email"
+      class="form-control"
+      id="floatingInput"
+      placeholder="email@email.com"
+      name="email"
+    />
+    <label for="floatingInput">Parent's Email</label>
+  </div>
+</div>
+<div class="col-6">
+  <div class="form-floating mb-3">
+    <input
+      type="text"
+      class="form-control"
+      id="floatingInput"
+      placeholder="Phone"
+      name="phone"
+    />
+    <label for="floatingInput">Parent's Phone</label>
+  </div>
+</div>
+
+<div class="col-12">
+  <div class="form-floating mb-3">
+    <textarea
+      type="text"
+      class="form-control"
+      id="floatingInput"
+      placeholder="Comments"
+      name="comments"
+      style="height: 200px;"
+    ></textarea>
+    <label for="floatingInput">Additional Comments</label>
+  </div>
+</div>
+
+<div class="col-12 d-grid">
+  <button class="btn btn-primary" type="submit">Submit</button>
+</div>

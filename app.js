@@ -41,7 +41,7 @@ pool.getConnection((err, connection) => {
 //   res.render("home");
 // });
 
-const routes = require("./server/routes/user");
+const routes = require("./server/routes/student");
 app.use("/", routes);
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
