@@ -39,4 +39,9 @@ pool.getConnection((err, connection) => {
 const routes = require("./server/routes/student");
 app.use("/", routes);
 
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+// app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+
+const server = app.listen(process.env.PORT || 3000, () => {
+  const PORT = server.address().port;
+  console.log(`Express is working on port ${PORT}`);
+});
