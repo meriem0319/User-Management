@@ -13,4 +13,4 @@ CREATE TABLE student (
     comments TEXT NOT NULL, 
     status VARCHAR(10) NOT NULL DEFAULT 'active',
     PRIMARY KEY (id)) 
-    -- ENGINE = InnoDB;
+    ENGINE = InnoDB;

@@ -11,11 +11,6 @@ const pool = mySQL.createPool({
 
 //view ALL students
 exports.view = (req, res) => {
-  //router taken from app.js
-  // router.get("", (req, res) => {
-  //   res.render("home");
-  // });
-
   //connect to DB
   pool.getConnection((err, connection) => {
     if (err) throw err; //not connected
@@ -29,7 +24,8 @@ exports.view = (req, res) => {
         connection.release();
 
         if (!err) {
-          res.render("home", { rows });
+          let removedStudent = req.query.removed;
+          res.render("home", { rows, removedStudent });
         } else {
           console.log("there is a mysql error somewhere");
         }
@@ -102,7 +98,138 @@ exports.create = (req, res) => {
   });
 };
 
-//Edit student
+//render Edit student page which populates the data
 exports.edit = (req, res) => {
-  res.render("edit-student");
+  pool.getConnection((err, connection) => {
+    if (err) throw err; //not connected
+    console.log("connected as ID " + connection.threadId); //yay we're connected
+
+    //connection to student
+    connection.query(
+      "SELECT * FROM student WHERE id = ?",
+      [req.params.id],
+      (err, rows) => {
+        //when connection is done, release it
+        connection.release();
+
+        if (!err) {
+          res.render("edit-student", { rows });
+        } else {
+          console.log("there is a mysql error somewhere");
+        }
+
+        console.log("The data from student table: \n", rows);
+      }
+    );
+  });
+};
+
+//Update the populated data from edit.stu page
+exports.update = (req, res) => {
+  const { first_name, last_name, email, phone, comments } = req.body;
+
+  pool.getConnection((err, connection) => {
+    if (err) throw err; //not connected
+    console.log("connected as ID " + connection.threadId); //yay we're connected
+
+    //connection to student
+    connection.query(
+      "UPDATE student SET first_name = ?, last_name = ?, email = ?, phone = ?, comments = ? WHERE id = ?",
+      [first_name, last_name, email, phone, comments, req.params.id],
+      (err, rows) => {
+        //when connection is done, release it
+        connection.release();
+
+        if (!err) {
+          //we need the page to render again with the right data
+          pool.getConnection((err, connection) => {
+            if (err) throw err; //not connected
+            console.log("connected as ID " + connection.threadId); //yay we're connected
+
+            //connection to student
+            connection.query(
+              "SELECT * FROM student WHERE id = ?",
+              [req.params.id],
+              (err, rows) => {
+                //when connection is done, release it
+                connection.release();
+
+                if (!err) {
+                  res.render("edit-student", {
+                    rows,
+                    alert: `${first_name} has been updated`,
+                  });
+                } else {
+                  console.log(err);
+                }
+
+                console.log("The data from student table: \n", rows);
+              }
+            );
+          });
+          //NOT THIS:
+          // res.render("edit-student", { rows }); ==which gives rows of the same form
+        } else {
+          console.log("there is a mysql error somewhere");
+        }
+
+        console.log("The data from student table: \n", rows);
+      }
+    );
+  });
+};
+
+//delete student
+exports.delete = (req, res) => {
+  pool.getConnection((err, connection) => {
+    if (err) throw err; //not connected
+    console.log("connected as ID " + connection.threadId); //yay we're connected
+
+    //connection to student
+    connection.query(
+      "UPDATE student SET status = ? WHERE id = ?",
+      ["removed", req.params.id],
+      (err, rows) => {
+        //when connection is done, release it
+        connection.release();
+
+        if (!err) {
+          let removedStudent = encodeURIComponent(
+            "Student successfully removed"
+          );
+          res.redirect("/?removed=" + removedStudent);
+        } else {
+          console.log(err);
+        }
+        console.log("The data from student table: \n", rows);
+      }
+    );
+  });
+};
+
+//view ONE student
+exports.viewone = (req, res) => {
+  //connect to DB
+  pool.getConnection((err, connection) => {
+    if (err) throw err; //not connected
+    console.log("connected as ID " + connection.threadId); //yay we're connected
+
+    //connection to student
+    connection.query(
+      "SELECT * FROM student WHERE id = ?",
+      [req.params.id],
+      (err, rows) => {
+        //when connection is done, release it
+        connection.release();
+
+        if (!err) {
+          res.render("view-student", { rows });
+        } else {
+          console.log("there is a mysql error somewhere");
+        }
+
+        console.log("The data from student table: \n", rows);
+      }
+    );
+  });
 };

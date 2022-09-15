@@ -7,6 +7,7 @@ all of this data into each single file to render the same form }}
       type="text"
       class="form-control"
       id="floatingInput"
+      value="{{this.first_name}}"
       placeholder="Fist Name"
       name="first_name"
     />
@@ -19,6 +20,7 @@ all of this data into each single file to render the same form }}
       type="text"
       class="form-control"
       id="floatingInput"
+      value="{{this.last_name}}"
       placeholder="Last Name"
       name="last_name"
     />
@@ -32,6 +34,7 @@ all of this data into each single file to render the same form }}
       type="email"
       class="form-control"
       id="floatingInput"
+      value="{{this.email}}"
       placeholder="email@email.com"
       name="email"
     />
@@ -44,6 +47,7 @@ all of this data into each single file to render the same form }}
       type="text"
       class="form-control"
       id="floatingInput"
+      value="{{this.phone}}"
       placeholder="Phone"
       name="phone"
     />
@@ -60,7 +64,7 @@ all of this data into each single file to render the same form }}
       placeholder="Comments"
       name="comments"
       style="height: 200px;"
-    ></textarea>
+    >{{this.comments}}</textarea>
     <label for="floatingInput">Additional Comments</label>
   </div>
 </div>

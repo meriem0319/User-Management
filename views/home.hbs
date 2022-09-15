@@ -1,3 +1,18 @@
+{{! adding this alert on homepage when student is deleted }}
+
+{{#if removedStudent}}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    Student has been successfully removed
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+{{/if}}
+
+{{! home page  }}
 <div class="row">
   <div class="col-6"><h1>Students</h1></div>
   <div class="col-6 d-flex justify-content-end">
@@ -31,9 +46,11 @@
         <td>{{this.phone}}</td>
         <td class="text-end">
 
-          <a href="#" type="button" class="btn btn-light btn-small"><i
-              class="bi bi-eye"
-            ></i>
+          <a
+            href="/viewstudent/{{this.id}}"
+            type="button"
+            class="btn btn-light btn-small"
+          ><i class="bi bi-eye"></i>
             View</a>
           <a
             {{! linking the stu.ID with edit button }}
@@ -42,9 +59,11 @@
             class="btn btn-light btn-small"
           ><i class="bi bi-pencil"></i>
             Edit</a>
-          <a href="#" type="button" class="btn btn-light btn-small"><i
-              class="bi bi-person-x"
-            ></i>
+          <a
+            href="/{{this.id}}"
+            type="button"
+            class="btn btn-light btn-small"
+          ><i class="bi bi-person-x"></i>
             Delete</a>
 
         </td>
