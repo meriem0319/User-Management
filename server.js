@@ -5,8 +5,9 @@ const mySQL = require("mysql2");
 
 require("dotenv").config();
 
-const app = express();
 const PORT = process.env.PORT || 3000;
+
+const app = express();
 
 //parsing middleware, parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -39,9 +40,4 @@ pool.getConnection((err, connection) => {
 const routes = require("./server/routes/student");
 app.use("/", routes);
 
-// app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
-
-const server = app.listen(process.env.PORT || 3000, () => {
-  const PORT = server.address().port;
-  console.log(`Express is working on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
