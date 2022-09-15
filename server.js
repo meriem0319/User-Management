@@ -36,11 +36,6 @@ pool.getConnection((err, connection) => {
   console.log("connected as ID " + connection.threadId); //yay we're connected
 });
 
-//Router
-// app.get("", (req, res) => {
-//   res.render("home");
-// });
-
 const routes = require("./server/routes/student");
 app.use("/", routes);
 
