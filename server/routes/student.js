@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const stuController = require("../controllers/stuController");
+const stuController = require("../controllers/stucontroller");
 
 //create, search, update, delete
 //route to render the list of students page
