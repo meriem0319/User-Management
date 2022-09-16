@@ -32,10 +32,10 @@
       <th scope="col">Last Name</th>
       <th scope="col">Parent's Email</th>
       <th scope="col">Parent's Phone</th>
-      <th scope="col" class="text-end">Action</th>
+      <th scope="col" class="text-center">Action</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="table-group-divider">
 
     {{#each rows}}
       <tr>
@@ -44,7 +44,7 @@
         <td>{{this.last_name}}</td>
         <td>{{this.email}}</td>
         <td>{{this.phone}}</td>
-        <td class="text-end">
+        <td class="text-center">
 
           <a
             href="/viewstudent/{{this.id}}"
