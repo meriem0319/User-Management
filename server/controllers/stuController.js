@@ -14,9 +14,6 @@ exports.view = (req, res) => {
   connection.query(
     'SELECT * FROM student WHERE status = "active"',
     (err, rows) => {
-      //when connection is done, release it
-      connection.release();
-
       if (!err) {
         let removedStudent = req.query.removed;
         res.render("home", { rows, removedStudent });
@@ -37,9 +34,6 @@ exports.find = (req, res) => {
     "SELECT * FROM student WHERE first_name LIKE ? OR last_name LIKE ?",
     ["%" + searchTerm + "%", "%" + searchTerm + "%"],
     (err, rows) => {
-      //when connection is done, release it
-      connection.release();
-
       if (!err) {
         //rendering the home.hbs file
         res.render("home", { rows });
@@ -67,9 +61,6 @@ exports.create = (req, res) => {
     "INSERT INTO student SET first_name = ?, last_name = ?, email = ?, phone = ?, comments = ?",
     [first_name, last_name, email, phone, comments],
     (err, rows) => {
-      //when connection is done, release it
-      connection.release();
-
       if (!err) {
         //rendering the add-student.hbs file
         res.render("add-student", { alert: "Student added successfully" });
@@ -88,9 +79,6 @@ exports.edit = (req, res) => {
     "SELECT * FROM student WHERE id = ?",
     [req.params.id],
     (err, rows) => {
-      //when connection is done, release it
-      connection.release();
-
       if (!err) {
         res.render("edit-student", { rows });
       } else {
@@ -111,9 +99,6 @@ exports.update = (req, res) => {
     "UPDATE student SET first_name = ?, last_name = ?, email = ?, phone = ?, comments = ? WHERE id = ?",
     [first_name, last_name, email, phone, comments, req.params.id],
     (err, rows) => {
-      //when connection is done, release it
-      connection.release();
-
       if (!err) {
         //we need the page to render again with the right data
 
@@ -122,9 +107,6 @@ exports.update = (req, res) => {
           "SELECT * FROM student WHERE id = ?",
           [req.params.id],
           (err, rows) => {
-            //when connection is done, release it
-            connection.release();
-
             if (!err) {
               res.render("edit-student", {
                 rows,
@@ -155,9 +137,6 @@ exports.delete = (req, res) => {
     "UPDATE student SET status = ? WHERE id = ?",
     ["removed", req.params.id],
     (err, rows) => {
-      //when connection is done, release it
-      connection.release();
-
       if (!err) {
         let removedStudent = encodeURIComponent("Student successfully removed");
         res.redirect("/?removed=" + removedStudent);
@@ -176,9 +155,6 @@ exports.viewone = (req, res) => {
     "SELECT * FROM student WHERE id = ?",
     [req.params.id],
     (err, rows) => {
-      //when connection is done, release it
-      connection.release();
-
       if (!err) {
         res.render("view-student", { rows });
       } else {
