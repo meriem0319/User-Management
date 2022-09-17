@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const exphbs = require("express-handlebars");
 // const bodyParser = require("body-parser");
 // const mySQL = require("mysql2");
@@ -22,6 +23,8 @@ app.use(express.static("public"));
 const handlebars = exphbs.create({ extname: ".hbs" });
 app.engine(".hbs", handlebars.engine);
 app.set("view engine", ".hbs");
+
+app.use(express.static(path.join(__dirname, "public")));
 
 //create a connection to the DB
 // const pool = mySQL.createPool({
