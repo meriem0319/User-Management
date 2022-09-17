@@ -34,7 +34,7 @@ Then I am able to generate a list of students with that name, or with that lette
 
 ## 📹Website Demo:
 
-![Classroom Management App](./public/img/classAppDemo.png)
+![Classroom Management App](./public/img/ClassAppDemo.png)
 
 ### 💻Heroku Link to the Website:
 
