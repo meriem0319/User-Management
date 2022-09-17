@@ -1,8 +1,7 @@
 const express = require("express");
 const path = require("path");
 const exphbs = require("express-handlebars");
-// const bodyParser = require("body-parser");
-// const mySQL = require("mysql2");
+
 
 require("dotenv").config();
 
@@ -25,21 +24,6 @@ app.engine(".hbs", handlebars.engine);
 app.set("view engine", ".hbs");
 
 app.use(express.static(path.join(__dirname, "public")));
-
-//create a connection to the DB
-// const pool = mySQL.createPool({
-//   connectionLimit: 100,
-//   host: process.env.DB_HOST,
-//   user: process.env.DB_USER,
-//   password: process.env.DB_PASS,
-//   database: process.env.DB_NAME,
-// });
-
-//connect to DB
-// pool.getConnection((err, connection) => {
-//   if (err) throw err; //not connected
-//   console.log("connected as ID " + connection.threadId); //yay we're connected
-// });
 
 const routes = require("./server/routes/student");
 app.use("/", routes);
